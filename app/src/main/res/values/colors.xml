@@ -3,4 +3,6 @@
     <color name="colorPrimary">#16191B</color>
     <color name="colorPrimaryDark">#16191B</color>
     <color name="colorAccent">#fff</color>
+    <color name="gads_color">#FFAE45</color>
+    <color name="gads_color_two">#FFCD8B</color>
 </resources>

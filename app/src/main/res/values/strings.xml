@@ -17,4 +17,9 @@
     <string name="leaderboard">LEADERBOARD</string>
     <string name="submit">Submit</string>
     <string name="title_activity_submit">SubmitActivity</string>
+    <string name="project_submission">Project Submission</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="project_on_github_link">Project on GITHUB (link)</string>
 </resources>
