@@ -16,4 +16,5 @@
     <string name="tab_text_2">Skill IQ Leaders</string>
     <string name="leaderboard">LEADERBOARD</string>
     <string name="submit">Submit</string>
+    <string name="title_activity_submit">SubmitActivity</string>
 </resources>
