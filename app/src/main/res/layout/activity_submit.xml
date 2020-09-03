@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#141414"
+    android:background="@drawable/launch_two"
     tools:context=".SubmitActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
