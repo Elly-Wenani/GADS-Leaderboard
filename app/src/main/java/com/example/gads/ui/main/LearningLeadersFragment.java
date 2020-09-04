@@ -11,21 +11,24 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gads.R;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class SlidePagerFragment extends Fragment {
+public class LearningLeadersFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private PageViewModel pageViewModel;
+    RecyclerView mRecyclerView;
 
 
-    public static SlidePagerFragment newInstance(int index) {
-        SlidePagerFragment fragment = new SlidePagerFragment();
+    public static LearningLeadersFragment newInstance(int index) {
+        LearningLeadersFragment fragment = new LearningLeadersFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);
@@ -47,11 +50,14 @@ public class SlidePagerFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.learner_fragment, container, false);
+        View leanerView = inflater.inflate(R.layout.learner_fragment, container, false);
+
+        mRecyclerView = leanerView.findViewById(R.id.rv_leaner);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
         //TODO place recycler here
-        final TextView textView = root.findViewById(R.id.section_label);
+        final TextView textView = leanerView.findViewById(R.id.section_label);
         pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -60,6 +66,6 @@ public class SlidePagerFragment extends Fragment {
         });
 
 
-        return root;
+        return leanerView;
     }
 }

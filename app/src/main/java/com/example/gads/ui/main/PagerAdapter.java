@@ -28,8 +28,8 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
-        // Return a SlidePagerFragment (defined as a static inner class below).
-        return SlidePagerFragment.newInstance(position + 1);
+        // Return a LearningLeadersFragment (defined as a static inner class below).
+        return LearningLeadersFragment.newInstance(position + 1);
     }
 
     @Nullable
