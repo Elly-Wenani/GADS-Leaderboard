@@ -70,19 +70,6 @@ public class LearningLeadersFragment extends Fragment {
         mLearningLeaderAdapter = new LearningLeaderAdapter(getContext(), leaner);
         mRecyclerView.setAdapter(mLearningLeaderAdapter);
 
-        //mRecyclerView.setAdapter(new LearningLeaderAdapter(getContext() ,response.body()));
-
-
-
-        //TODO place recycler here
-        final TextView textView = leanerView.findViewById(R.id.section_label);
-        pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-
         return leanerView;
     }
 }
