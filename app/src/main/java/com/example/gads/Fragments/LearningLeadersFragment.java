@@ -1,15 +1,12 @@
-package com.example.gads.ui.main;
+package com.example.gads.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gads.Adapter.LearningLeaderAdapter;
 import com.example.gads.Models.LearnerModel;
 import com.example.gads.R;
+import com.example.gads.ui.main.PageViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
