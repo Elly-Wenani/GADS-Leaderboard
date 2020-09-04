@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.gads.Fragments.IQFragment;
 import com.example.gads.Fragments.LearningLeadersFragment;
 import com.example.gads.R;
 
@@ -30,7 +31,20 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a LearningLeadersFragment (defined as a static inner class below).
-        return LearningLeadersFragment.newInstance(position + 1);
+
+        Fragment fragment = null;
+
+        switch (position){
+            case 0:
+                fragment = new LearningLeadersFragment();
+                break;
+
+            case 1:
+                fragment = new IQFragment();
+                break;
+        }
+        assert fragment != null;
+        return fragment;
     }
 
     @Nullable
