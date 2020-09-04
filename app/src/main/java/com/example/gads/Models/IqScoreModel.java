@@ -1,12 +1,12 @@
 package com.example.gads.Models;
 
-public class iqModel {
+public class IqScoreModel {
     public String leanerNameIq;
     public int learnerIqScore;
     public String leanerCountryIq;
     public String leanerBudgeUrlIq;
 
-    public iqModel(String leanerNameIq, int learnerIqScore, String leanerCountryIq, String leanerBudgeUrlIq) {
+    public IqScoreModel(String leanerNameIq, int learnerIqScore, String leanerCountryIq, String leanerBudgeUrlIq) {
         this.leanerNameIq = leanerNameIq;
         this.learnerIqScore = learnerIqScore;
         this.leanerCountryIq = leanerCountryIq;
