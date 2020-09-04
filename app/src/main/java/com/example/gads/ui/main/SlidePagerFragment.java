@@ -17,14 +17,15 @@ import com.example.gads.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragment extends Fragment {
+public class SlidePagerFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private PageViewModel pageViewModel;
 
-    public static PlaceholderFragment newInstance(int index) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
+
+    public static SlidePagerFragment newInstance(int index) {
+        SlidePagerFragment fragment = new SlidePagerFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);
@@ -46,7 +47,10 @@ public class PlaceholderFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        View root = inflater.inflate(R.layout.learner_fragment, container, false);
+
+
+        //TODO place recycler here
         final TextView textView = root.findViewById(R.id.section_label);
         pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -54,6 +58,8 @@ public class PlaceholderFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+
         return root;
     }
 }
