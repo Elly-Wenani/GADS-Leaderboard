@@ -14,7 +14,12 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gads.Adapter.LearningLeaderAdapter;
+import com.example.gads.Models.LearnerModel;
 import com.example.gads.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -25,6 +30,9 @@ public class LearningLeadersFragment extends Fragment {
 
     private PageViewModel pageViewModel;
     RecyclerView mRecyclerView;
+
+    private ArrayList<LearnerModel> leaner;
+    LearningLeaderAdapter mLearningLeaderAdapter;
 
 
     public static LearningLeadersFragment newInstance(int index) {
@@ -52,8 +60,18 @@ public class LearningLeadersFragment extends Fragment {
             Bundle savedInstanceState) {
         View leanerView = inflater.inflate(R.layout.learner_fragment, container, false);
 
+        leaner = new ArrayList<>();
+        leaner.add(new LearnerModel("Elly Wenani", 154, "Kenya", "Not Available"));
+
         mRecyclerView = leanerView.findViewById(R.id.rv_leaner);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // specifying an adapter
+        mLearningLeaderAdapter = new LearningLeaderAdapter(getContext(), leaner);
+        mRecyclerView.setAdapter(mLearningLeaderAdapter);
+
+        //mRecyclerView.setAdapter(new LearningLeaderAdapter(getContext() ,response.body()));
+
 
 
         //TODO place recycler here
@@ -64,7 +82,6 @@ public class LearningLeadersFragment extends Fragment {
                 textView.setText(s);
             }
         });
-
 
         return leanerView;
     }

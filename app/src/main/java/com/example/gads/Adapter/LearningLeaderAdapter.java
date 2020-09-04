@@ -20,7 +20,7 @@ public class LearningLeaderAdapter extends RecyclerView.Adapter<LearningLeaderAd
     private LayoutInflater mLayoutInflater;
     private List<LearnerModel> mLearnerModels;
 
-    LearningLeaderAdapter(Context context, List<LearnerModel> learningLeadersModels){
+    public LearningLeaderAdapter(Context context, List<LearnerModel> learningLeadersModels){
         this.mLayoutInflater = LayoutInflater.from(context);
         mLearnerModels = learningLeadersModels;
     }
