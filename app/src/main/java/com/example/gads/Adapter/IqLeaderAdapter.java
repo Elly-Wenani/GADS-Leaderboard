@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gads.Models.IqScoreModel;
-import com.example.gads.Models.LearnerModel;
 import com.example.gads.R;
 
 import java.util.List;
@@ -27,9 +26,9 @@ public class IqLeaderAdapter extends RecyclerView.Adapter<IqLeaderAdapter.ViewHo
 
     @NonNull
     @Override
-    public IqLeaderAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mLayoutInflater.inflate(R.layout.iq_row, parent, false);
-        return new IqLeaderAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override

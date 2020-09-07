@@ -18,9 +18,7 @@ import com.example.gads.ui.main.PageViewModel;
 
 import java.util.ArrayList;
 
-/**
- * A placeholder fragment containing a simple view.
- */
+
 public class LearningLeadersFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
