@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,9 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gads.Adapter.LearningLeaderAdapter;
 import com.example.gads.Models.LearnerModel;
 import com.example.gads.R;
+import com.example.gads.Services.LeanerService;
+import com.example.gads.Services.ServiceBuilder;
 import com.example.gads.ui.main.PageViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class LearningLeadersFragment extends Fragment {
@@ -26,7 +34,7 @@ public class LearningLeadersFragment extends Fragment {
     private PageViewModel pageViewModel;
     RecyclerView mRecyclerView;
 
-    private ArrayList<LearnerModel> leaner;
+//    private ArrayList<List<LearnerModel>> leaner;
     LearningLeaderAdapter mLearningLeaderAdapter;
 
 
@@ -55,15 +63,36 @@ public class LearningLeadersFragment extends Fragment {
             Bundle savedInstanceState) {
         View leanerView = inflater.inflate(R.layout.learner_fragment, container, false);
 
-        leaner = new ArrayList<>();
-        leaner.add(new LearnerModel("Elly Wenani", 154, "Kenya", "Not Available"));
+//        leaner = new ArrayList<>();
+//        leaner.add(new LearnerModel("Elly Wenani",
+//                154, "Kenya", "Not Available"));
 
         mRecyclerView = leanerView.findViewById(R.id.rv_leaner);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // specifying an adapter
-        mLearningLeaderAdapter = new LearningLeaderAdapter(getContext(), leaner);
-        mRecyclerView.setAdapter(mLearningLeaderAdapter);
+//        mLearningLeaderAdapter = new LearningLeaderAdapter(getContext(), leaner);
+//        mRecyclerView.setAdapter(mLearningLeaderAdapter);
+
+        /**
+         * Fetch content using provided url
+         */
+        LeanerService leanerService = ServiceBuilder.builderService(LeanerService.class);
+        Call<List<LearnerModel>> leanerRequest = leanerService.getLeaner();
+
+        leanerRequest.enqueue(new Callback<List<LearnerModel>>() {
+            @Override
+            public void onResponse(Call<List<LearnerModel>> call, Response<List<LearnerModel>> response) {
+
+                mLearningLeaderAdapter = new LearningLeaderAdapter(getContext(), response.body());
+                mRecyclerView.setAdapter(mLearningLeaderAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<LearnerModel>> call, Throwable t) {
+                Toast.makeText(getContext(), "Failed to load data", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return leanerView;
     }

@@ -11,7 +11,7 @@ public class ServiceBuilder {
 
     private static Retrofit sRetrofit = sBuilder.build();
 
-    private static <S> S builderService(Class<S> serviceType){
+    public static <S> S builderService(Class<S> serviceType){
         return sRetrofit.create(serviceType);
     }
 }
