@@ -3,8 +3,8 @@ package com.example.gads.Services;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-public interface LeanerService {
+public interface IqService {
 
-    @GET("api/hours")
-    Call<String> getLeaner();
+    @GET("api/skilliq")
+    Call<String> getLeanerIq();
 }
