@@ -22,6 +22,7 @@ import com.example.gads.Services.IqService;
 import com.example.gads.Services.LeanerService;
 import com.example.gads.Services.ServiceBuilder;
 import com.example.gads.ui.main.PageViewModel;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +89,7 @@ public class IQFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<IqScoreModel>> call, Throwable t) {
-                Toast.makeText(getContext(), "Failed to load data", Toast.LENGTH_SHORT).show();
+                Snackbar.make(getView(), "Failed to load data", Snackbar.LENGTH_LONG).show();
             }
         });
 
