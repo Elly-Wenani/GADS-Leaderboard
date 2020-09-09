@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,10 +16,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gads.Adapter.IqLeaderAdapter;
 import com.example.gads.Adapter.LearningLeaderAdapter;
 import com.example.gads.Models.IqScoreModel;
+import com.example.gads.Models.LearnerModel;
 import com.example.gads.R;
+import com.example.gads.Services.IqService;
+import com.example.gads.Services.LeanerService;
+import com.example.gads.Services.ServiceBuilder;
 import com.example.gads.ui.main.PageViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class IQFragment extends Fragment {
 
@@ -27,7 +37,7 @@ public class IQFragment extends Fragment {
     private PageViewModel pageViewModel;
     RecyclerView mRecyclerView;
 
-    private ArrayList<IqScoreModel> score;
+//    private ArrayList<IqScoreModel> score;
     IqLeaderAdapter mIqLeaderAdapter;
 
     public static IQFragment newInstance(int index) {
@@ -55,15 +65,32 @@ public class IQFragment extends Fragment {
         //return super.onCreateView(inflater, container, savedInstanceState);
         View iqView = inflater.inflate(R.layout.skilliq_fragment, container, false);
 
-        score = new ArrayList<>();
-        score.add(new IqScoreModel("Elly Wenani", 286, "Kenya", "Not Available"));
+//        score = new ArrayList<>();
+//        score.add(new IqScoreModel("Elly Wenani", 286, "Kenya", "Not Available"));
 
         mRecyclerView = iqView.findViewById(R.id.rv_iq_score);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // specifying an adapter
-        mIqLeaderAdapter = new IqLeaderAdapter(getContext(), score);
-        mRecyclerView.setAdapter(mIqLeaderAdapter);
+        /**
+         * Fetch content using provided url
+         */
+        IqService iqService = ServiceBuilder.builderService(IqService.class);
+        Call<List<IqScoreModel>> iqRequest = iqService.getLeanerIq();
+
+        iqRequest.enqueue(new Callback<List<IqScoreModel>>() {
+            @Override
+            public void onResponse(Call<List<IqScoreModel>> call, Response<List<IqScoreModel>> response) {
+
+                mIqLeaderAdapter = new IqLeaderAdapter(getContext(), response.body());
+                mRecyclerView.setAdapter(mIqLeaderAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<IqScoreModel>> call, Throwable t) {
+                Toast.makeText(getContext(), "Failed to load data", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return iqView;
     }
