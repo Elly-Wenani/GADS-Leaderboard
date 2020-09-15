@@ -37,7 +37,7 @@ public class LearningLeadersFragment extends Fragment {
     private PageViewModel pageViewModel;
     RecyclerView mRecyclerView;
 
-//    private ArrayList<List<LearnerModel>> leaner;
+    //    private ArrayList<List<LearnerModel>> leaner;
     LearningLeaderAdapter mLearningLeaderAdapter;
 
 
@@ -89,6 +89,11 @@ public class LearningLeadersFragment extends Fragment {
 
                 mLearningLeaderAdapter = new LearningLeaderAdapter(getContext(), response.body());
                 mRecyclerView.setAdapter(mLearningLeaderAdapter);
+
+                if (!response.isSuccessful()) {
+
+                    Toast.makeText(getContext(), "Error loading data", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
