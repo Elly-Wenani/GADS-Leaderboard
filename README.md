@@ -1,9 +1,7 @@
 # GADS-Leaderboard
-
-# Google Africa Developer Scholarship Phase II Associate Android Developer Practice Project
+Google Africa Developer Scholarship Phase II Associate Android Developer Practice Project
 
 # Description
-
 This project is project aimed at implementing some simple concepts that are very important as far as Android Development is concerned.
 
 In this project, I implemented a mobile design of the GADS 2020 Leaderboard.
