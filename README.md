@@ -25,9 +25,11 @@ Skill IQ Leaders - /api/skilliq
 
 The submission is done through your App.
 Make a NETWORK POST request to this Google Form using any network library. [I use retrofit in this project]
+
 Base url - https://docs.google.com/forms/d/e/
 Form ID-1FAIpQLSf9d1TcNU6zc6KR8bSEM41Z1g1zl35cwZr2xyjIhaMAz8WChQ/formResponse
 FullURL- https://docs.google.com/forms/d/e/1FAIpQLSf9d1TcNU6zc6KR8bSEM41Z1g1zl35cwZr2xyjIhaMAz8WChQ/formResponse
+
 Entries IDs:
 Email Address = entry.1824927963
 Name = entry.1877115667
