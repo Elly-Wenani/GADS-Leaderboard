@@ -1,9 +1,15 @@
 package com.example.gads.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class IqScoreModel {
+    @SerializedName("name")
     public String leanerNameIq;
+    @SerializedName("score")
     public int learnerIqScore;
+    @SerializedName("country")
     public String leanerCountryIq;
+    @SerializedName("badgeUrl")
     public String leanerBudgeUrlIq;
 
     public IqScoreModel(String leanerNameIq, int learnerIqScore, String leanerCountryIq, String leanerBudgeUrlIq) {

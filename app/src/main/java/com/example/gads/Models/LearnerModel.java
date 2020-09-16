@@ -1,9 +1,15 @@
 package com.example.gads.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class LearnerModel {
+    @SerializedName("name")
     public String leanerName;
+    @SerializedName("hours")
     public int learningHours;
+    @SerializedName("country")
     public String leanerCountry;
+    @SerializedName("badgeUrl")
     public String leanerBudgeUrl;
 
     public LearnerModel(String leanerName, int learningHours, String leanerCountry, String leanerBudgeUrl) {
