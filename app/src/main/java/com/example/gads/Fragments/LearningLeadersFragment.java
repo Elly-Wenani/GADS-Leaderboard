@@ -24,6 +24,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -87,12 +88,12 @@ public class LearningLeadersFragment extends Fragment {
             @Override
             public void onResponse(Call<List<LearnerModel>> call, Response<List<LearnerModel>> response) {
 
-                mLearningLeaderAdapter = new LearningLeaderAdapter(getContext(), response.body());
-                mRecyclerView.setAdapter(mLearningLeaderAdapter);
-
                 if (!response.isSuccessful()) {
 
-                    Toast.makeText(getContext(), "Error loading data", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(requireView(), "Data loading unsuccessful", Snackbar.LENGTH_LONG).show();
+                } else {
+                    mLearningLeaderAdapter = new LearningLeaderAdapter(getContext(), response.body());
+                    mRecyclerView.setAdapter(mLearningLeaderAdapter);
                 }
             }
 
