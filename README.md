@@ -38,3 +38,15 @@ Link to project = entry.284483984
 
 # Screenshort of how the application works
 ![Splashscreen](https://user-images.githubusercontent.com/49924816/93518023-ec855c80-f934-11ea-9eae-8c51314538f6.png)
+
+![Leaderboard](https://user-images.githubusercontent.com/49924816/93518902-299e1e80-f936-11ea-8014-3b764a67cafa.png)
+
+![SkillLeader](https://user-images.githubusercontent.com/49924816/93518924-302c9600-f936-11ea-887c-4d4ac49cd522.png)
+
+![Submit](https://user-images.githubusercontent.com/49924816/93518958-3b7fc180-f936-11ea-8a8a-113e10d38d29.png)
+
+![Confirm](https://user-images.githubusercontent.com/49924816/93518981-45a1c000-f936-11ea-987b-d49a63c802e7.png)
+
+![Successful](https://user-images.githubusercontent.com/49924816/93518996-4aff0a80-f936-11ea-842e-6e660784b670.png)
+
+![failed](https://user-images.githubusercontent.com/49924816/93519005-4fc3be80-f936-11ea-81ed-42f20b3fc191.png)
