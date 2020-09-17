@@ -5,14 +5,21 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.gads.Services.ProjectSubmissionService;
+import com.example.gads.Services.ServiceBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SubmitActivity extends AppCompatActivity {
 
@@ -22,6 +29,7 @@ public class SubmitActivity extends AppCompatActivity {
     private EditText txtEmailAddress;
     private EditText txtGitLink;
     private Button submitProject;
+    private String TAG = "SubmitActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +63,44 @@ public class SubmitActivity extends AppCompatActivity {
 
     //Validate entered data
     private void userDetails() {
-        isValidInfo();
+        verifyDetails();
     }
 
-    //User input information
-    private void isValidInfo() {
+    //Submit project with retrofit
+    private void funSubmitProject() {
+
+        ProjectSubmissionService projectSubmissionService
+                = ServiceBuilder.builderService(ProjectSubmissionService.class);
+        Call<Void> submitProjectRequest = projectSubmissionService.submitProject(
+                txtFirstName.getText().toString().trim(),
+                txtLastName.getText().toString().trim(),
+                txtEmailAddress.getText().toString().trim(),
+                txtGitLink.getText().toString().trim()
+        );
+
+        submitProjectRequest.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: Submitted " + response.body());
+
+                } else {
+                    Log.d(TAG, "onResponse: could not submit " + response.body());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d(TAG, "onResponse: Failed to submit " + t.getMessage());
+            }
+        });
+    }
+
+    //Validate user details to prevent empty inputs
+    private void verifyDetails() {
+
         String firstName = txtFirstName.getText().toString().trim();
         String lastName = txtLastName.getText().toString().trim();
         String emailAddress = txtEmailAddress.getText().toString().trim();
@@ -82,7 +123,7 @@ public class SubmitActivity extends AppCompatActivity {
             txtGitLink.requestFocus();
 
         } else {
-            Toast.makeText(this, firstName + lastName + emailAddress + githubLink, Toast.LENGTH_SHORT).show();
+            funSubmitProject();
         }
     }
 
