@@ -6,16 +6,33 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 public class SubmitActivity extends AppCompatActivity {
+
+    private ImageView imageView;
+    private EditText txtFirstName;
+    private EditText txtLastName;
+    private EditText txtEmailAddress;
+    private EditText txtGitLink;
+    private Button submitProject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit);
 
-        ImageView imageView = findViewById(R.id.arrow);
+        //Hooks
+        imageView = findViewById(R.id.arrow);
+        txtFirstName = findViewById(R.id.txtFirstName);
+        txtLastName = findViewById(R.id.txtLastName);
+        txtEmailAddress = findViewById(R.id.txtEmailAddress);
+        txtGitLink = findViewById(R.id.txtGitLink);
+        submitProject = findViewById(R.id.btnSubmitProject);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
