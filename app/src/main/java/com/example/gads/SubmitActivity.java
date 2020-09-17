@@ -17,6 +17,7 @@ import com.example.gads.Services.ServiceBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,6 +31,7 @@ public class SubmitActivity extends AppCompatActivity {
     private EditText txtGitLink;
     private Button submitProject;
     private String TAG = "SubmitActivity";
+    private SweetAlertDialog sweetAlertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,17 @@ public class SubmitActivity extends AppCompatActivity {
         submitProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userDetails();
+                sweetAlertDialog = new SweetAlertDialog(SubmitActivity.this,
+                        SweetAlertDialog.NORMAL_TYPE);
+                sweetAlertDialog.setTitleText("Are you sure?")
+                        .setConfirmButton("Yes", new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.hide();
+                                userDetails();
+                            }
+                        })
+                        .show();
             }
         });
     }
@@ -84,9 +96,11 @@ public class SubmitActivity extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
                     Log.d(TAG, "onResponse: Submitted " + response.body());
+                    successDialogue();
 
                 } else {
                     Log.d(TAG, "onResponse: could not submit " + response.body());
+                    failedDialogue();
 
                 }
             }
@@ -94,6 +108,8 @@ public class SubmitActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Log.d(TAG, "onResponse: Failed to submit " + t.getMessage());
+                failedDialogue();
+
             }
         });
     }
@@ -125,6 +141,26 @@ public class SubmitActivity extends AppCompatActivity {
         } else {
             funSubmitProject();
         }
+    }
+
+    //Dialogue to show success in submission
+    public void successDialogue() {
+        sweetAlertDialog = new SweetAlertDialog(SubmitActivity.this,
+                SweetAlertDialog.SUCCESS_TYPE);
+        sweetAlertDialog.setTitleText("Submission Successful")
+                .hideConfirmButton()
+                .show();
+    }
+
+    //Dialogue for failed submission
+    public void failedDialogue() {
+        sweetAlertDialog = new SweetAlertDialog(SubmitActivity.this,
+                SweetAlertDialog.ERROR_TYPE);
+        sweetAlertDialog
+                .setTitleText("Submission not successful")
+                .hideConfirmButton()
+                .show();
+
     }
 
     @Override
