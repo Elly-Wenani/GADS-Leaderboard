@@ -36,3 +36,6 @@ Name = entry.1877115667
 Last Name = entry.2006916086
 Link to project = entry.284483984
 
+# Screenshort of how the application works
+https://user-images.githubusercontent.com/49924816/93518023-ec855c80-f934-11ea-9eae-8c51314538f6.png
+
