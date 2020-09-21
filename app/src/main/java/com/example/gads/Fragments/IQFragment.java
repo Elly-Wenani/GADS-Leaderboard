@@ -90,30 +90,19 @@ public class IQFragment extends Fragment {
             @Override
             public void onResponse(Call<List<IqScoreModel>> call, Response<List<IqScoreModel>> response) {
 
-                //Check if there is internet connection then load data
-                try {
-                    Process p1 = Runtime.getRuntime().exec("ping -c 1 www.google.com");
-                    int returnVal = p1.waitFor();
-                    boolean reachable = (returnVal == 0);
-
-                    if (reachable) {
-                        mIqLeaderAdapter = new IqLeaderAdapter(getContext(), response.body());
-                        mRecyclerView.setAdapter(mIqLeaderAdapter);
-
-                    } else {
-                        Snackbar.make(getView(), "No Internet Access", Snackbar.LENGTH_LONG).show();
-                    }
-                } catch (Exception e) {
-                    Log.d(TAG, " exception: ", e);
+                if (!response.isSuccessful()) {
+                    Snackbar.make(requireView(), "Failed to load data", Snackbar.LENGTH_LONG).show();
+                } else {
+                    mIqLeaderAdapter = new IqLeaderAdapter(getContext(), response.body());
+                    mRecyclerView.setAdapter(mIqLeaderAdapter);
                 }
 
             }
 
             @Override
             public void onFailure(Call<List<IqScoreModel>> call, Throwable t) {
+                Snackbar.make(getView(), "Connection not available", Snackbar.LENGTH_LONG).show();
 
-                Snackbar.make(getView(), "Turn on data connection", Snackbar.LENGTH_LONG).show();
-                Log.d(TAG, "throwable: ", t);
             }
         });
 

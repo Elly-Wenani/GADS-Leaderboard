@@ -94,7 +94,7 @@ public class LearningLeadersFragment extends Fragment {
 
                 if (!response.isSuccessful()) {
 
-//                    Snackbar.make(requireView(), "Failed to load data", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(requireView(), "Failed to load data", Snackbar.LENGTH_LONG).show();
                 } else {
                     mLearningLeaderAdapter = new LearningLeaderAdapter(getContext(), response.body());
                     mRecyclerView.setAdapter(mLearningLeaderAdapter);
@@ -103,7 +103,7 @@ public class LearningLeadersFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<LearnerModel>> call, Throwable t) {
-//                Snackbar.make(getView(), "Connection not available", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(getView(), "Connection not available", Snackbar.LENGTH_LONG).show();
             }
         });
 
