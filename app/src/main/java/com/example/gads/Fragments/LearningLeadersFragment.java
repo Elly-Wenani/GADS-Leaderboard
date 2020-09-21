@@ -1,5 +1,8 @@
 package com.example.gads.Fragments;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gads.Adapter.LearningLeaderAdapter;
+import com.example.gads.LeaderBoardActivity;
 import com.example.gads.Models.LearnerModel;
 import com.example.gads.R;
 import com.example.gads.Services.LeanerService;
@@ -90,7 +94,7 @@ public class LearningLeadersFragment extends Fragment {
 
                 if (!response.isSuccessful()) {
 
-                    Snackbar.make(requireView(), "Data loading unsuccessful", Snackbar.LENGTH_LONG).show();
+//                    Snackbar.make(requireView(), "Failed to load data", Snackbar.LENGTH_LONG).show();
                 } else {
                     mLearningLeaderAdapter = new LearningLeaderAdapter(getContext(), response.body());
                     mRecyclerView.setAdapter(mLearningLeaderAdapter);
@@ -99,7 +103,7 @@ public class LearningLeadersFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<LearnerModel>> call, Throwable t) {
-                Snackbar.make(getView(), "Failed to load data", Snackbar.LENGTH_LONG).show();
+//                Snackbar.make(getView(), "Connection not available", Snackbar.LENGTH_LONG).show();
             }
         });
 

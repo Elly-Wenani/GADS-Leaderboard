@@ -1,6 +1,10 @@
 package com.example.gads.Fragments;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +31,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,8 +42,10 @@ public class IQFragment extends Fragment {
 
     private PageViewModel pageViewModel;
     RecyclerView mRecyclerView;
+    String TAG = "IQFragment";
+    SweetAlertDialog sweetAlertDialog;
 
-//    private ArrayList<IqScoreModel> score;
+    //    private ArrayList<IqScoreModel> score;
     IqLeaderAdapter mIqLeaderAdapter;
 
     public static IQFragment newInstance(int index) {
@@ -83,13 +90,30 @@ public class IQFragment extends Fragment {
             @Override
             public void onResponse(Call<List<IqScoreModel>> call, Response<List<IqScoreModel>> response) {
 
-                mIqLeaderAdapter = new IqLeaderAdapter(getContext(), response.body());
-                mRecyclerView.setAdapter(mIqLeaderAdapter);
+                //Check if there is internet connection then load data
+                try {
+                    Process p1 = Runtime.getRuntime().exec("ping -c 1 www.google.com");
+                    int returnVal = p1.waitFor();
+                    boolean reachable = (returnVal == 0);
+
+                    if (reachable) {
+                        mIqLeaderAdapter = new IqLeaderAdapter(getContext(), response.body());
+                        mRecyclerView.setAdapter(mIqLeaderAdapter);
+
+                    } else {
+                        Snackbar.make(getView(), "No Internet Access", Snackbar.LENGTH_LONG).show();
+                    }
+                } catch (Exception e) {
+                    Log.d(TAG, " exception: ", e);
+                }
+
             }
 
             @Override
             public void onFailure(Call<List<IqScoreModel>> call, Throwable t) {
-                Snackbar.make(getView(), "Failed to load data", Snackbar.LENGTH_LONG).show();
+
+                Snackbar.make(getView(), "Turn on data connection", Snackbar.LENGTH_LONG).show();
+                Log.d(TAG, "throwable: ", t);
             }
         });
 
