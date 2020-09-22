@@ -58,17 +58,8 @@ public class SubmitActivity extends AppCompatActivity {
         submitProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sweetAlertDialog = new SweetAlertDialog(SubmitActivity.this,
-                        SweetAlertDialog.NORMAL_TYPE);
-                sweetAlertDialog.setTitleText("Are you sure?")
-                        .setConfirmButton("Yes", new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.hide();
-                                userDetails();
-                            }
-                        })
-                        .show();
+                
+                userDetails();
             }
         });
     }
@@ -139,7 +130,18 @@ public class SubmitActivity extends AppCompatActivity {
             txtGitLink.requestFocus();
 
         } else {
-            funSubmitProject();
+
+            sweetAlertDialog = new SweetAlertDialog(SubmitActivity.this,
+                    SweetAlertDialog.NORMAL_TYPE);
+            sweetAlertDialog.setTitleText("Are you sure?")
+                    .setConfirmButton("Yes", new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            sweetAlertDialog.hide();
+                            funSubmitProject();
+                        }
+                    })
+                    .show();
         }
     }
 
