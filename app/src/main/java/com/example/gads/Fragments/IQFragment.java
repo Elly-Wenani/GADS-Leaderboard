@@ -43,7 +43,6 @@ public class IQFragment extends Fragment {
     private PageViewModel pageViewModel;
     RecyclerView mRecyclerView;
     String TAG = "IQFragment";
-    SweetAlertDialog sweetAlertDialog;
 
     //    private ArrayList<IqScoreModel> score;
     IqLeaderAdapter mIqLeaderAdapter;
