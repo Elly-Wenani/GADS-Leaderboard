@@ -58,7 +58,7 @@ public class SubmitActivity extends AppCompatActivity {
         submitProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
                 userDetails();
             }
         });
@@ -71,6 +71,12 @@ public class SubmitActivity extends AppCompatActivity {
 
     //Submit project with retrofit
     private void funSubmitProject() {
+
+        sweetAlertDialog = new SweetAlertDialog(SubmitActivity.this,
+                SweetAlertDialog.PROGRESS_TYPE);
+                sweetAlertDialog.setCancelable(false);
+        sweetAlertDialog.setTitleText("Please wait")
+                .show();
 
         ProjectSubmissionService projectSubmissionService
                 = ServiceBuilder.builderService(ProjectSubmissionService.class);
@@ -87,10 +93,12 @@ public class SubmitActivity extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
                     Log.d(TAG, "onResponse: Submitted " + response.body());
+                    sweetAlertDialog.hide();
                     successDialogue();
 
                 } else {
                     Log.d(TAG, "onResponse: could not submit " + response.body());
+                    sweetAlertDialog.hide();
                     failedDialogue();
 
                 }
@@ -99,6 +107,7 @@ public class SubmitActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Log.d(TAG, "onResponse: Failed to submit " + t.getMessage());
+                sweetAlertDialog.hide();
                 failedDialogue();
 
             }
